@@ -4,7 +4,7 @@ document.addEventListener("DOMContentLoaded", () => {
         'A', 'A', 'B', 'B', 'C', 'C', 'D', 'D',
         'E', 'E', 'F', 'F', 'G', 'G', 'H', 'H'
     ];
-    
+
     let shuffledCards = cards.sort(() => 0.5 - Math.random());
     let selectedCards = [];
     let selectedCardsId = [];
