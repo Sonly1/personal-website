@@ -1,6 +1,6 @@
 const express = require('express');
 const app = express();
-const port = 3000;
+const port = process.env.PORT || 3000;
 
 const movies = [
     { id: 1, title: "Inception", director: "Christopher Nolan" },
