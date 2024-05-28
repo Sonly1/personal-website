@@ -1,19 +1,24 @@
-const express = require('express');
-const app = express();
-const port = process.env.PORT || 3000;
+document.addEventListener('DOMContentLoaded', () => {
+    const getMoviesButton = document.getElementById('get-movies');
+    const moviesList = document.getElementById('movies-list');
 
-const movies = [
-    { id: 1, title: "Inception", director: "Christopher Nolan" },
-    { id: 2, title: "Dune Part II", director: "Denis Villeneuve" },
-    { id: 3, title: "Tenet", director: "Christopher Nolan" }, 
-    {id: 4, title: "Lord Of The Ring", director: "Peter Jackson"}
-];
-
-// API endpoint to get all movies
-app.get('/api/movies', (req, res) => {
-    res.json(movies);
-});
-
-app.listen(port, () => {
-    console.log(`Server is running on http://localhost:${port}`);
+    getMoviesButton.addEventListener('click', () => {
+        // Replace with your GitHub Pages URL
+        fetch('https://sonly1.github.io/personal-website/movies.json')
+            .then(response => response.json())
+            .then(data => {
+                moviesList.innerHTML = '';
+                data.forEach(movie => {
+                    const listItem = document.createElement('li');
+                    listItem.textContent = `${movie.title} - ${movie.director}`;
+                    moviesList.appendChild(listItem);
+                });
+            })
+            .catch(error => {
+                console.error('Error fetching movies:', error);
+                const errorItem = document.createElement('li');
+                errorItem.textContent = 'Error fetching movies';
+                moviesList.appendChild(errorItem);
+            });
+    });
 });
